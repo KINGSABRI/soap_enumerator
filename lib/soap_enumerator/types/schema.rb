@@ -24,8 +24,7 @@ module SoapEnumerator
           @attributes    = attributes_2_methods(schema_doc)
           @complex_types = get_complex_types(schema_doc)
         end
-
-
+        
         private
         # get_complex_types method
         #
