@@ -5,7 +5,7 @@ module SoapEnumerator
 
     # Message class is struct class for wsd:message
     class Message
-      include MetaHelper
+      include GenericHelpers
 
       attr_accessor :attributes
       attr_accessor :parts

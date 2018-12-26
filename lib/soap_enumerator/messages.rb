@@ -17,15 +17,16 @@ module SoapEnumerator
 
     attr_reader :list
 
-
     def initialize(doc)
       @list = get_messages(doc.search('//wsdl:message'))
     end
 
 
     private
-
     # list_messages method generate a list of wsdl:message messages
+    #
+    # @param [] doc
+    #
     # @return <Array[Message]>
     def get_messages(doc)
       doc&.map do |message_doc|

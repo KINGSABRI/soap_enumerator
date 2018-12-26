@@ -17,19 +17,14 @@ module SoapEnumerator
     #   all[0].type
     #
     class Schemas
+      include GenericHelpers
+
       attr_reader :list
 
       # @param [Nokogiri::XML::Document] types_doc
       def initialize(types_doc)
-        begin
-          # @schemas = doc.search('//xsd:schema')
-          @list = get_schemas(types_doc.search('//xsd:schema'))
-        rescue Nokogiri::XML::XPath::SyntaxError
-          # @schemas = doc.search('//s:schema')
-          @list = get_schemas(types_doc.search('//s:schema'))
-        rescue Exception => e
-          puts e.full_message
-        end
+        search_terms = ['//xsd:schema', '//s:schema', '//schema']
+        @list = get_schemas(safe_search(search_terms, types_doc))
       end
 
       private

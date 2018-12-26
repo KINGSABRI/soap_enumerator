@@ -15,7 +15,7 @@ module SoapEnumerator
       #
       class Schema
 
-        include MetaHelper
+        include GenericHelpers
 
         attr_reader :attributes
         attr_reader :complex_types
@@ -24,7 +24,7 @@ module SoapEnumerator
           @attributes    = attributes_2_methods(schema_doc)
           @complex_types = get_complex_types(schema_doc)
         end
-        
+
         private
         # get_complex_types method
         #
@@ -33,20 +33,10 @@ module SoapEnumerator
         # @return [Array<ComplexType>]
         #   return object of [ComplexType] contains the name of the complexType
         #   and array of all existing types. (@see #ComplexType)
-        #
-        # @todo: find a better search query to include xsd:complexType and s:complexType
-        def get_complex_types(schema)
-          begin
-            schema.search('//xsd:complexType')&.map do |comp_types_doc|
-              Types::Schemas::Schema::ComplexType.new(comp_types_doc)
-            end
-          rescue Nokogiri::XML::XPath::SyntaxError
-            schema.search('//s:complexType')&.map do |comp_types_doc|
-              Types::Schemas::Schema::ComplexType.new(comp_types_doc)
-            end
-          rescue Exception => e
-            puts "[!] The element 'complexType' Could not be found in the document!"
-            puts e.full_message
+        def get_complex_types(schema_doc)
+          search_terms = ['//xsd:complexType', '//s:complexType', '//complexType']
+          safe_search(search_terms, schema_doc)&.map do |comp_types_doc|
+            Types::Schemas::Schema::ComplexType.new(comp_types_doc)
           end
         end
 

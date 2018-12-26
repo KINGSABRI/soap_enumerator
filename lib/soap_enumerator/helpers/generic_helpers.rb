@@ -1,7 +1,7 @@
 require_relative 'string_helpers'
 
 module SoapEnumerator
-  module MetaHelper
+  module GenericHelper
     include StringHelper
 
     # get each attribute,
@@ -19,5 +19,23 @@ module SoapEnumerator
         define_singleton_method(to_snake_case(attr_v.name).to_sym) { attr_v.value }
       end
     end
+
+    def element_2_method(element)
+      define_singleton_method(to_snake_case(element.name).to_sym) { element.get_attribute('message') }
+      # define_singleton_method(to_snake_case(element.name).to_sym) { element_extracts(element) }
+    end
+
+
+    def element_extracts(element)
+      case element.name
+      when 'documentation'
+        element.text
+      when 'input'
+        element.get_attribute('message')
+      when 'output'
+        element.get_attribute('message')
+      end
+    end
+
   end
 end

@@ -5,7 +5,7 @@ module SoapEnumerator
         class ComplexType
           # Type class is struct class for xsd:all elements (each element is a Type object).
           class Type
-            include MetaHelper
+            include GenericHelpers
 
             attr_reader :attributes
 

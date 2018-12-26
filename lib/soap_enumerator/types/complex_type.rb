@@ -6,7 +6,7 @@ module SoapEnumerator
       class Schema
         # ComplexType class is struct class for complexType
         class ComplexType
-          include MetaHelper
+          include GenericHelpers
 
           attr_reader :attributes
           attr_reader :all

@@ -4,7 +4,7 @@ module SoapEnumerator
 
       # Part class is struct class for wsd:part elements (each element is a Part object).
       class Part
-        include MetaHelper
+        include GenericHelpers
 
         attr_reader :attributes
 

@@ -17,27 +17,43 @@ module SoapEnumerator
   #
   class Bindings
 
-    def initialize(doc)
-      # review all docuement parts and iterate over the search
-      # not just take the first element .. @todo:check port_types
-      @bindings = doc.search('//wsdl:binding')
-    end
+    attr_reader :list
 
-    # list_operations method generates a list of wsdl:binding elements
-    # @return <Array[Binding]>
-    def list_bindings
-      @bindings&.map do |binding|
-        Binding.new(binding_name(binding),
-                    binding_type(binding),
-                    binding_soap_transport(binding),
-                    binding_soap_style(binding),
-                    binding_ops(binding))
-      end
+    def initialize(doc)
+      @list = get_bindings(doc.search('//wsdl:binding'))
     end
-    alias_method :list, :list_bindings
 
 
     private
+    # get_bindings method extracts a binding's name
+    #
+    # @param [Nokogiri::XML::Element] doc
+    #   Elements of wsdl:binding in the wsdl document
+    #
+    # @return [Array<Binding>]
+    #   returns array of Binding objects
+    #
+    #   @note: safe navigation is used.
+    #     If doc is nil, method returns nil
+    def get_bindings(doc)
+      doc&.map do |binding_doc|
+        Bindings::Binding.new(binding_doc)
+      end
+    end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # binding_name method extracts a binding's name
     #
