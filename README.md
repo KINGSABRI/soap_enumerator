@@ -65,6 +65,7 @@ soap_enum.bindings
 bindings  = soap_enum.bindings.list
 binding   = bindings[0]
 binding.attributes
+binding.soap_binding
 operation = binding.operations[0]
 operation.attributes
 operation.name
