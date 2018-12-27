@@ -24,33 +24,61 @@ require 'soap-enumerator'
 soap_enum = SoapEnumerator::Parse.wsdl(wsdl_doc)
 
 # Types Elements
-soap_enum.types
-soap_enum.types.schemas.list
-schema = soap_enum.types.schemas.list[0]
+types   = soap_enum.types
+schemas = types.schemas
+schema  = schemas[0]
 schema.attributes
 schema.target_namespace
-schema.complex_types 
-complex_type = schema.complex_types[0] 
-complex_type.all
-type = complex_type.all[0]
-type.attributes
+complex_types = schema.complex_types
+complex_type  = complex_types[0]
+ctype = complex_type.all[0]
+ctype.attributes
+simple_types = schema.simple_types
+simple_types = simple_types
+simple_type  = simple_types[0]
+stype = simple_type.all[0]
+stype.attributes
 
 # Message Elements
 soap_enum.messages
-soap_enum.messages.list
-message = soap_enum.messages.list[0]
+messages = soap_enum.messages.list
+message  = messages[0]
 message.attributes
-message.parts
-part = message.parts[0]
+part     = message.parts[0]
 part.name
-part.type
 
 # portType Elements
+soap_enum.port_types
+port_types = soap_enum.port_types.list
+port_type  = port_types[0]
+port_type.attributes
+port_type.name
+port_type.operations
+operation = port_type.operations[0]
+operation.name
+operation.attributes
+operation.input
+operation.output
 
 # Binding Elements
-
+soap_enum.bindings
+bindings  = soap_enum.bindings.list
+binding   = bindings[0]
+binding.attributes
+operation = binding.operations[0]
+operation.attributes
+operation.name
+operation.input
+operation.output
+  
 # Services Elements
-
+soap_enum.services.list
+service = soap_enum.services.list[0]
+service.name
+ports = service.ports
+port  = ports[0]
+port.attributes
+port.address
 ```
 
 
