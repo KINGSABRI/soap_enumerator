@@ -5,7 +5,24 @@ require_relative 'bindings'
 require_relative 'services'
 
 module SoapEnumerator
+
+  # Types class contains all wsdl:definitions elements as objects.
+  #
+  # @example:
+  #   doc         = Nokogiri::XML(open(https://url/service.php?wsdl))
+  #   definitions = SoapEnumerator::Definitions.new(doc)
+  #   definitions.attributes
+  #   definitions.types
+  #   definitions.messages
+  #   definitions.port_types
+  #   definitions.bindings
+  #   definitions.services
+  #
   class Definitions
+    include GenericHelpers
+
+    # @!attribute #attributes
+    attr_reader :attributes
     # @!attribute #types for wsdl schemas elements, it calls [Types] class
     attr_reader :types
     # @!attribute #messages for wsdl Message elements, it calls [Messages] class
@@ -17,26 +34,13 @@ module SoapEnumerator
     # @!attribute #services for wsdl Service elements, it calls [Services] class
     attr_reader :services
 
-    def initialize(wsdl_doc)
-      @attributes  = attributes_2_methods(doc.search('//wsdl:definitions'))
-
+    def initialize(doc)
+      @attributes  = attributes_2_methods(doc.search('//wsdl:definitions')[0])
       @types       = Types.new(doc)
       @messages    = Messages.new(doc)
       @port_types  = PortTypes.new(doc)
       @bindings    = Bindings.new(doc)
       @services    = Services.new(doc)
-
-      @definitions = doc.search('//wsdl:definitions')[0]
     end
-  end
-
-
-  # target_namespace method extracts the definitions' targetNamespace from [Nokogiri::XML::Element] object
-  def target_namespace
-    @definitions.get_attribute('targetNamespace')
-  end
-
-  def name
-    @definitions.get_attribute('name')
   end
 end
