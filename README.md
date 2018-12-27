@@ -4,15 +4,9 @@ Soap Enumerator is a Ruby gem for parsing and enumerating WSDL XML documents ins
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'soap_enumerator'
 ```
-
-Or install it yourself as:
-
-    $ gem install soap_enumerator
+$ gem install soap_enumerator
+```
 
 ## Usage
 
@@ -22,6 +16,15 @@ wsdl_doc = open('http://192.168.100.10:8383/dvws/vulnerabilities/wsdlenum/servic
 require 'soap-enumerator' 
 
 soap_enum = SoapEnumerator::Parse.wsdl(wsdl_doc)
+
+# Definition Elements
+definitions = soap_enum.definitions
+definitions.attributes
+definitions.types
+definitions.messages
+definitions.port_types
+definitions.bindings
+definitions.services
 
 # Types Elements
 types   = soap_enum.types
