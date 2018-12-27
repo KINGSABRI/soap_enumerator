@@ -1,19 +1,15 @@
 module SoapEnumerator
   class Types
-    class Schemas
       class Schema
-        class ComplexType
-          # Type class is struct class for xsd:all elements (each element is a Type object).
-          class Type
-            include GenericHelpers
+      # Type class is struct class for xsd:all elements (each element is a Type object).
+      class Type
+        include GenericHelpers
 
-            attr_reader :attributes
+        # @!attribute #attributes
+        attr_reader :attributes
 
-            def initialize(type_doc)
-              @attributes = attributes_2_methods(type_doc)
-            end
-
-          end
+        def initialize(type_doc)
+          @attributes = attributes_2_methods(type_doc)
         end
       end
     end

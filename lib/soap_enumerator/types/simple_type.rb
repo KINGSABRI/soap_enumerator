@@ -4,7 +4,7 @@ module SoapEnumerator
   class Types
     class Schema
       # ComplexType class is struct class for complexType
-      class ComplexType
+      class SimpleType
         include GenericHelpers
 
         # @!attribute #attributes
@@ -17,7 +17,6 @@ module SoapEnumerator
           @all = get_type_doc(comp_type_doc)
         end
 
-
         private
 
         # get_type_doc method
@@ -28,7 +27,8 @@ module SoapEnumerator
         #   return object of [Type] contains the name of the Type
         #   and array of all existing types. (@see #Type)
         def get_type_doc(comp_type_doc)
-          search_terms = ['./*/xsd:element', './*/s:element']
+          search_terms = ['./*/xsd:element', './*/s:element', './s:restriction']
+          # search_terms = ['./s:restriction', './*/xsd:element', './*/s:element']
           safe_search(search_terms, comp_type_doc)&.map do |element|
             Types::Schema::Type.new(element) unless element.nil?
           end
