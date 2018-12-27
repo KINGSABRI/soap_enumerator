@@ -10,9 +10,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["king.sabri@gmail.com"]
 
   spec.summary       = %q{A gem for SOAP/WSDL enumeration inspired by SoapUI.}
-  spec.description   = %q{A gem for SOAP/WSDL enumeration inspired by SoapUI}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-  spec.license       = "MIT"
+  spec.description   = %q{A gem for SOAP/WSDL enumeration inspired by SoapUI. It converts all SOAP's document to ruby objects.}
+  spec.homepage      = "https://github.com/KINGSABRI/soap_enumerator"
+  spec.license       = "MLGPL-3.0IT"
 
   spec.require_paths = ["lib"]
 
