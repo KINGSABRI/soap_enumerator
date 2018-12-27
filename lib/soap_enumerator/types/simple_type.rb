@@ -3,7 +3,7 @@ require_relative 'type'
 module SoapEnumerator
   class Types
     class Schema
-      # ComplexType class is struct class for complexType
+      # SimpleType class is a class for simpleType elements
       class SimpleType
         include GenericHelpers
 
@@ -14,7 +14,7 @@ module SoapEnumerator
 
         def initialize(comp_type_doc)
           @attributes = attributes_2_methods(comp_type_doc)
-          @all = get_type_doc(comp_type_doc)
+          @all        = get_type_doc(comp_type_doc)
         end
 
         private
@@ -28,10 +28,9 @@ module SoapEnumerator
         #   and array of all existing types. (@see #Type)
         def get_type_doc(comp_type_doc)
           search_terms = ['./*/xsd:element', './*/s:element', './s:restriction']
-          # search_terms = ['./s:restriction', './*/xsd:element', './*/s:element']
           safe_search(search_terms, comp_type_doc)&.map do |element|
             Types::Schema::Type.new(element) unless element.nil?
-          end
+          end.compact
         end
       end
     end

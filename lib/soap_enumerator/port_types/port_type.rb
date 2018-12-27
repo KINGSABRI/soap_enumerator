@@ -7,8 +7,9 @@ module SoapEnumerator
     class PortType
       include GenericHelpers
 
+      # @!attribute #attributes
       attr_reader :attributes
-
+      # @!attribute #operations
       attr_reader :operations
 
       def initialize(port_type_doc)
@@ -17,6 +18,14 @@ module SoapEnumerator
       end
 
       private
+
+      # get_operations method
+      #
+      # @param [Nokogiri::XML::Document] port_type_doc
+      #
+      # @return [Array<Operation>]
+      #   return object of [Operation] contains the name of the Operation
+      #   and array of all existing operations. (@see #Operation)
       def get_operations(port_type_doc)
         port_type_doc.search('//wsdl:operation')&.map do |operation|
           PortTypes::PortType::Operation.new(operation)

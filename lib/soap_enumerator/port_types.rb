@@ -7,9 +7,19 @@ module SoapEnumerator
   # @example:
   #   doc        = Nokogiri::XML(open(https://url/service.php?wsdl))
   #   port_types = SoapEnumerator::PortTypes.new(doc)
+  #   port_type  = port_types.list[0]
+  #   port_type.attributes
+  #   port_type.name
+  #   port_type.operations
+  #   operation = port_type.operations[0]
+  #   operation.name
+  #   operation.attributes
+  #   operation.input
+  #   operation.output
   #
   class PortTypes
 
+    # @!attribute #list
     attr_reader :list
 
     def initialize(doc)
@@ -18,7 +28,6 @@ module SoapEnumerator
       end
     end
 
-
     private
 
     def get_port_types(doc)
@@ -26,6 +35,5 @@ module SoapEnumerator
         PortTypes::PortType.new(port_type)
       end
     end
-
   end
 end

@@ -25,15 +25,11 @@ module SoapEnumerator
       # @return [Array<Messages::Message::Part>]
       #   returns an array of [Message::Part] objects(@see Message::Part)
       #   which contain each element's name and type
-      #
-      #   @note: safe navigation is used.
-      #     If comp_type_doc is nil, method returns nil
       def get_parts(message_doc)
         message_doc.elements&.map do |part_doc|
           Messages::Message::Part.new(part_doc)
         end
       end
-
     end
   end
 end

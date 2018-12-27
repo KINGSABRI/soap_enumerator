@@ -1,7 +1,6 @@
 module SoapEnumerator
   class Messages
     class Message
-
       # Part class is struct class for wsd:part elements (each element is a Part object).
       class Part
         include GenericHelpers
@@ -12,7 +11,6 @@ module SoapEnumerator
           @attributes = attributes_2_methods(part_doc)
         end
       end
-
     end
   end
 end

@@ -6,7 +6,7 @@ module SoapEnumerator
     # Schema class contains all schema elements as objects.
     #   It dynamically detects schema attributes then generates
     #   attributes for these attributes.
-    #   Also, it contains the complexType objects
+    #   Also, it contains the complexType and simpleType objects
     #
     # @example:
     #   @see #Types
@@ -40,8 +40,8 @@ module SoapEnumerator
       def get_complex_types(schema_doc)
         search_terms = ['//./xsd:complexType', '//./s:complexType', '//./complexType']
         safe_search(search_terms, schema_doc)&.map do |comp_types_doc|
-          Types::Schema::ComplexType.new(comp_types_doc)
-        end
+          Types::Schema::ComplexType.new(comp_types_doc) unless comp_types_doc.nil?
+        end.compact
       end
 
       # get_simple_types method
@@ -54,8 +54,8 @@ module SoapEnumerator
       def get_simple_types(schema_doc)
         search_terms = ['//./xsd:simpleType', '//./s:simpleType', '//./simpleType']
         safe_search(search_terms, schema_doc)&.map do |comp_types_doc|
-          Types::Schema::SimpleType.new(comp_types_doc)
-        end
+          Types::Schema::SimpleType.new(comp_types_doc) unless comp_types_doc.nil?
+        end.compact
       end
     end
   end

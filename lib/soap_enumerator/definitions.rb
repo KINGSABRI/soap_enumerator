@@ -1,7 +1,13 @@
+require_relative 'types'
+require_relative 'messages'
+require_relative 'port_types'
+require_relative 'bindings'
+require_relative 'services'
+
 module SoapEnumerator
   class Definitions
-    # @!attribute #schema for wsdl schemas elements, it calls [Schemas] class
-    attr_reader :schema
+    # @!attribute #types for wsdl schemas elements, it calls [Types] class
+    attr_reader :types
     # @!attribute #messages for wsdl Message elements, it calls [Messages] class
     attr_reader :messages
     # @!attribute #port_types for wsdl PortType elements, it calls [PortTypes] class
@@ -12,13 +18,13 @@ module SoapEnumerator
     attr_reader :services
 
     def initialize(wsdl_doc)
-      doc = Nokogiri::XML(wsdl_doc)
+      @attributes  = attributes_2_methods(doc.search('//wsdl:definitions'))
 
-      @schema     = Types::Schema.new(doc)
-      @messages   = Messages.new(doc)
-      @port_types = PortTypes.new(doc)
-      # @bindings   = Bindings.new(doc)
-      # @services   = Services.new(doc)
+      @types       = Types.new(doc)
+      @messages    = Messages.new(doc)
+      @port_types  = PortTypes.new(doc)
+      @bindings    = Bindings.new(doc)
+      @services    = Services.new(doc)
 
       @definitions = doc.search('//wsdl:definitions')[0]
     end

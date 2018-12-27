@@ -17,9 +17,9 @@ module SoapEnumerator
 
         def initialize(ops_doc)
           @attributes    = attributes_2_methods(ops_doc)
-          @documentation = get_documentation(ops_doc)
           @input         = get_operation(ops_doc, 'input')
           @output        = get_operation(ops_doc, 'output')
+          @documentation = get_documentation(ops_doc)
         end
 
         private

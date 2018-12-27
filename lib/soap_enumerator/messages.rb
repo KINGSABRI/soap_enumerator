@@ -7,11 +7,10 @@ module SoapEnumerator
   # @example:
   #   doc      = Nokogiri::XML(open(https://url/service.php?wsdl))
   #   messages = SoapEnumerator::Messages.new(doc)
-  #   message  = messages.list_messages[0]
+  #   message  = messages.list[0]
   #   message.name
   #   part = message.parts[0]
   #   part.name
-  #   part.type
   #
   class Messages
 
@@ -21,11 +20,11 @@ module SoapEnumerator
       @list = get_messages(doc.search('//wsdl:message'))
     end
 
-
     private
-    # list_messages method generate a list of wsdl:message messages
+
+    # get_messages method generate a list of wsdl:message messages
     #
-    # @param [] doc
+    # @param [Nokogiri::XML::Document] doc
     #
     # @return <Array[Message]>
     def get_messages(doc)
@@ -33,6 +32,5 @@ module SoapEnumerator
         Message.new(message_doc)
       end
     end
-
   end
 end

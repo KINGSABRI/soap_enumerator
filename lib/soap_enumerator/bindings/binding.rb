@@ -2,8 +2,20 @@ require_relative 'operation'
 
 module SoapEnumerator
   class Bindings
-    # Binding class is struct class for wsdl:binding
-    class Binding
+  # Binding class is a class for wsdl:binding elements
+  #
+  # @example:
+  #   bindings  = soap_enum.bindings.list
+  #   binding   = bindings[0]
+  #   binding.attributes
+  #   binding.soap_binding
+  #   operation = binding.operations[0]
+  #   operation.attributes
+  #   operation.name
+  #   operation.input
+  #   operation.output
+  #
+  class Binding
       include GenericHelpers
 
       # @!attribute #attributes
@@ -14,8 +26,6 @@ module SoapEnumerator
       attr_reader :operations
 
       def initialize(binding_doc)
-        # @name           = name
-        # @type           = type
         @attributes   = attributes_2_methods(binding_doc)
         @soap_binding = get_soap_binding(binding_doc)
         @operations   = get_operations(binding_doc)
@@ -35,6 +45,5 @@ module SoapEnumerator
         end
       end
     end
-
   end
 end
