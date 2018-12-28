@@ -71,9 +71,12 @@ binding.attributes
 binding.soap_binding
 operation = binding.operations[0]
 operation.attributes
+operation.soap_action
+operation.style
 operation.name
 operation.input
 operation.output
+operation.documentation
   
 # Services Elements
 soap_enum.services.list
