@@ -8,6 +8,10 @@ module SoapEnumerator
 
         # @!attribute #attributes
         attr_reader :attributes
+        # @!attribute #soap_action
+        attr_reader :soap_action
+        # @!attribute #style
+        attr_reader :style
         # @!attribute #documentation
         attr_reader :documentation
         # @!attribute #input
@@ -20,11 +24,20 @@ module SoapEnumerator
           @input         = get_operation(ops_doc, 'input')
           @output        = get_operation(ops_doc, 'output')
           @documentation = get_documentation(ops_doc)
+          get_soap_operation(ops_doc)
         end
 
         private
+
         def get_documentation(doc)
           doc.search('documentation').text
+        end
+
+        # get_soap_operation  gets soapAction and style
+        def get_soap_operation(ops_doc)
+          ops_doc.search('./soap:operation').map do |sa|
+            attributes_2_methods(sa)
+          end.flatten
         end
 
         def get_operation(doc, operation)
