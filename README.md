@@ -13,7 +13,7 @@ $ gem install soap_enumerator
 ```ruby
 wsdl_doc = open('http://192.168.100.10:8383/dvws/vulnerabilities/wsdlenum/service.php?wsdl')
 
-require 'soap-enumerator' 
+require 'soap_enumerator' 
 
 soap_enum = SoapEnumerator::Parse.wsdl(wsdl_doc)
 
