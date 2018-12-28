@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.license       = "LGPL-3.0"
 
   s.require_paths = ["lib"]
-  s.files         = ["lib/example.rb"]
+  s.files         = ["lib/soap_enumerator.rb"]
 
   s.add_runtime_dependency     'nokogiri', '~> 1.8', '>= 1.8.0'
   s.add_development_dependency "bundler", "~> 1.17"
