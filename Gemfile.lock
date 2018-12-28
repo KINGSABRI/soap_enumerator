@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     soap_enumerator (0.1.0)
-      nokogiri (>= 1.8.0)
+      nokogiri (~> 1.8, >= 1.8.0)
 
 GEM
   remote: https://rubygems.org/
