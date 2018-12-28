@@ -22,6 +22,7 @@ module SoapEnumerator
         end
 
         private
+        
         def get_documentation(doc)
           doc.search('documentation').text
         end
