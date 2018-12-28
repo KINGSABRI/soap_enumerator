@@ -26,7 +26,6 @@ module SoapEnumerator
           doc.search('documentation').text
         end
 
-
         def get_operation(doc, operation)
           attributes_2_hashes(
               doc.elements
