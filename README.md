@@ -1,4 +1,4 @@
-# SoapEnumerator (Under heavy development)
+# SoapEnumerator
 
 Soap Enumerator is a Ruby gem for parsing and enumerating WSDL XML documents inspired by SoapUI. It converts the whole document into objects of itself. Using Soap Enumerator is intuitive, you can call its objects the same way you read the document.  
 
