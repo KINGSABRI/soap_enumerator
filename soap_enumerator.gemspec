@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
     f.match(%r{^(test|spec|features)/})
   end
 
-  s.add_runtime_dependency     'nokogiri', '~> 1.8', '>= 1.8.0'
+  s.add_runtime_dependency     'nokogiri', '~> 1.10.4', '>= 1.10.4'
   s.add_development_dependency "bundler", "~> 1.17"
   s.add_development_dependency "rake", "~> 10.0"
 end
