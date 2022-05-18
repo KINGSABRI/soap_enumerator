@@ -2,14 +2,16 @@ PATH
   remote: .
   specs:
     soap_enumerator (0.1.1)
-      nokogiri (~> 1.10.4, >= 1.10.4)
+      nokogiri (>= 1.10.4, < 1.14.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    mini_portile2 (2.4.0)
-    nokogiri (1.10.4)
-      mini_portile2 (~> 2.4.0)
+    mini_portile2 (2.8.0)
+    nokogiri (1.13.6)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    racc (1.6.0)
     rake (10.5.0)
 
 PLATFORMS
